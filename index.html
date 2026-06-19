@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Máy biến bài đối thủ — Mua gom giá tốt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --leaf:#1f7a4d;        /* lá đậm */
+    --leaf-2:#2d9d63;      /* lá tươi */
+    --cream:#f6f3e9;       /* be nền */
+    --paper:#fffdf6;       /* giấy */
+    --ink:#16231c;         /* mực */
+    --ink-soft:#4d5a51;
+    --deal:#e8843c;        /* cam deal */
+    --deal-deep:#c9651f;
+    --line:#e3ddca;
+    --good:#1f7a4d;
+    --bad:#c0392b;
+    --shadow:0 1px 0 rgba(22,35,28,.04), 0 8px 24px -12px rgba(22,35,28,.25);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:
+      radial-gradient(120% 80% at 100% 0%, #eef6ee 0%, transparent 55%),
+      var(--cream);
+    color:var(--ink);
+    line-height:1.5;
+    padding:24px 16px 60px;
+  }
+  .wrap{max-width:1080px;margin:0 auto}
+
+  /* Header */
+  header.brand{display:flex;align-items:center;gap:14px;margin-bottom:22px;flex-wrap:wrap}
+  .logo{
+    width:46px;height:46px;border-radius:13px;flex:0 0 auto;
+    background:linear-gradient(150deg,var(--leaf-2),var(--leaf));
+    display:grid;place-items:center;color:#fff;font-weight:800;
+    font-family:"Space Grotesk",sans-serif;box-shadow:var(--shadow);
+  }
+  .brand h1{font-size:21px;margin:0;font-weight:800;letter-spacing:-.01em}
+  .brand p{margin:2px 0 0;color:var(--ink-soft);font-size:13px}
+  .pill{
+    margin-left:auto;font-size:12px;font-weight:600;color:var(--leaf);
+    background:#e7f3ea;border:1px solid #cfe6d6;padding:5px 11px;border-radius:99px;
+  }
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+  @media(max-width:840px){.grid{grid-template-columns:1fr}}
+
+  .card{
+    background:var(--paper);border:1px solid var(--line);border-radius:16px;
+    padding:18px;box-shadow:var(--shadow);
+  }
+  .card + .card{margin-top:18px}
+  .eyebrow{
+    font-family:"Space Grotesk",sans-serif;font-size:11px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--leaf);
+    display:flex;align-items:center;gap:8px;margin-bottom:14px;
+  }
+  .eyebrow::before{content:"";width:18px;height:2px;background:var(--leaf-2);border-radius:2px}
+
+  label.f{display:block;font-size:12.5px;font-weight:600;color:var(--ink-soft);margin:0 0 5px}
+  .row{display:flex;gap:10px}
+  .row > *{flex:1;min-width:0}
+  input,select,textarea{
+    width:100%;font-family:inherit;font-size:14px;color:var(--ink);
+    background:var(--cream);border:1px solid var(--line);border-radius:10px;
+    padding:9px 11px;outline:none;transition:border-color .15s,box-shadow .15s;
+  }
+  input:focus,select:focus,textarea:focus{border-color:var(--leaf-2);box-shadow:0 0 0 3px #d6ecdd}
+  textarea{resize:vertical;min-height:108px;line-height:1.45}
+  .field{margin-bottom:13px}
+  .help{font-size:11.5px;color:var(--ink-soft);margin-top:5px}
+
+  /* segmented */
+  .seg{display:flex;background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:3px;gap:3px}
+  .seg button{
+    flex:1;border:0;background:transparent;font-family:inherit;font-weight:600;
+    font-size:12.5px;color:var(--ink-soft);padding:7px 4px;border-radius:8px;cursor:pointer;
+  }
+  .seg button[aria-pressed="true"]{background:#fff;color:var(--leaf);box-shadow:var(--shadow)}
+
+  /* tier ladder — signature */
+  .ladder{margin-top:4px}
+  .tier{
+    display:grid;grid-template-columns:78px 1fr auto;align-items:center;gap:12px;
+    padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--cream);
+    margin-bottom:9px;cursor:pointer;transition:border-color .15s,background .15s;
+  }
+  .tier:hover{border-color:#cfe6d6}
+  .tier[data-active="true"]{border-color:var(--leaf-2);background:#eef7f0;box-shadow:0 0 0 3px #e2f1e6}
+  .tier .who{font-weight:700;font-size:13px}
+  .tier .who small{display:block;font-weight:500;color:var(--ink-soft);font-size:11px}
+  .tier .price{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:17px;text-align:right;white-space:nowrap}
+  .tier .price small{display:block;font-family:"Be Vietnam Pro";font-weight:500;font-size:11px;color:var(--ink-soft)}
+  .bar{height:7px;border-radius:5px;background:#e6e0cf;overflow:hidden}
+  .bar > i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--leaf-2),var(--leaf))}
+  .marginlbl{font-size:11px;color:var(--ink-soft);margin-top:5px}
+  .loss{color:var(--bad);font-weight:600}
+
+  .retailbox{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:12px 14px;border:1px dashed var(--deal);border-radius:12px;
+    background:#fdf2e8;margin-bottom:14px;
+  }
+  .retailbox b{font-family:"Space Grotesk",sans-serif;font-size:20px;color:var(--deal-deep)}
+  .retailbox span{font-size:12.5px;color:var(--ink-soft)}
+
+  /* output */
+  .out{
+    white-space:pre-wrap;font-size:14px;line-height:1.6;background:var(--cream);
+    border:1px solid var(--line);border-radius:12px;padding:14px;min-height:120px;
+  }
+  .out.empty{color:var(--ink-soft);display:grid;place-items:center;text-align:center;font-size:13px}
+  .btnrow{display:flex;gap:9px;margin-top:12px;flex-wrap:wrap}
+  button.act{
+    font-family:inherit;font-weight:700;font-size:13.5px;border-radius:10px;cursor:pointer;
+    padding:10px 15px;border:1px solid transparent;transition:transform .05s,filter .15s;
+  }
+  button.act:active{transform:translateY(1px)}
+  .primary{background:var(--leaf);color:#fff}
+  .primary:hover{filter:brightness(1.06)}
+  .ghost{background:#fff;color:var(--leaf);border-color:#cfe6d6}
+  .ai{background:linear-gradient(120deg,var(--deal),var(--deal-deep));color:#fff}
+  .ai:hover{filter:brightness(1.05)}
+  button.act:disabled{opacity:.55;cursor:default}
+
+  .detect{font-size:12px;margin-top:6px;padding:8px 10px;border-radius:9px;display:none}
+  .detect.show{display:block}
+  .detect.under{background:#e7f3ea;border:1px solid #cfe6d6;color:var(--leaf)}
+  .detect.over{background:#fdeeee;border:1px solid #f1c9c4;color:var(--bad)}
+
+  .subhead{font-size:12.5px;font-weight:700;color:var(--ink);margin:16px 0 8px;display:flex;align-items:center;gap:8px}
+  .subhead .tag{font-family:"Space Grotesk",sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;background:#eef7f0;color:var(--leaf);padding:3px 7px;border-radius:6px}
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translate(-50%,18px);
+    background:var(--ink);color:#fff;font-size:13px;font-weight:600;padding:10px 16px;
+    border-radius:99px;opacity:0;transition:.25s;pointer-events:none;z-index:9;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  .foot{text-align:center;color:var(--ink-soft);font-size:12px;margin-top:26px}
+  .spin{display:inline-block;width:13px;height:13px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:s .7s linear infinite;vertical-align:-2px;margin-right:6px}
+  @keyframes s{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.spin{animation:none}}
+  .status{font-size:12px;color:var(--ink-soft);margin-top:2px;line-height:1.45}
+  .status.good{color:var(--leaf);font-weight:600}
+  .status.bad{color:var(--bad)}
+  .linkbtn{display:inline-block;margin-top:9px;font-size:12px;font-weight:600;color:var(--leaf);text-decoration:none;cursor:pointer}
+  .linkbtn:hover{text-decoration:underline}
+  #prodSel{font-weight:600}
+  .badge{display:inline-flex;align-items:center;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:99px;background:#eef7f0;color:var(--leaf);border:1px solid #cfe6d6}
+  .badge.warn{background:#fdeeee;color:var(--bad);border-color:#f1c9c4}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="brand">
+    <div class="logo">GG</div>
+    <div>
+      <h1>Máy biến bài đối thủ → bài của mình</h1>
+      <p>Nhập giá gốc &amp; lợi nhuận → tự ra giá gom + bài đăng nhóm Zalo</p>
+    </div>
+    <span class="pill">MUA GOM GIÁ TỐT</span>
+  </header>
+
+  <div class="grid">
+    <!-- ============ TRÁI: GIÁ + ĐỐI THỦ ============ -->
+    <div>
+      <div class="card">
+        <div class="eyebrow">Đồng bộ · Google Sheet (MKT điền sẵn)</div>
+        <div class="field">
+          <label class="f">Link Google Sheet chứa chính sách</label>
+          <input id="sheetUrl" placeholder="Dán link sheet: https://docs.google.com/spreadsheets/d/.../edit">
+        </div>
+        <div class="row">
+          <div class="field" style="flex:2"><label class="f">Tên tab chính sách</label><input id="sheetTab" value="Chính sách"></div>
+          <div class="field" style="flex:1;display:flex;align-items:flex-end"><button class="act primary" id="loadBtn" style="width:100%">Tải chính sách</button></div>
+        </div>
+        <select id="prodSel" style="display:none;margin-bottom:8px"></select>
+        <div class="status" id="sheetStatus">Tab cần các cột: <b>Sản phẩm · Giá gốc · Markup % · Chiết khấu 3 · Chiết khấu 5 · Chiết khấu 10</b>. Đặt sheet ở chế độ “Bất kỳ ai có link đều xem được”.</div>
+        <span class="linkbtn" id="togglePaste">Không tải được? Dán dữ liệu thủ công ▾</span>
+        <div id="pasteWrap" style="display:none;margin-top:10px">
+          <label class="f">Bôi đen vùng bảng trong Sheet → copy → dán vào đây (gồm cả dòng tiêu đề)</label>
+          <textarea id="pasteData" placeholder="Sản phẩm	Giá gốc	Markup %	Chiết khấu 3	Chiết khấu 5	Chiết khấu 10&#10;sữa hạt Giọt Lành	65000	40	6	12	18"></textarea>
+          <button class="act ghost" id="pasteBtn" style="margin-top:8px">Nạp dữ liệu đã dán</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow">Bước 1 · Chính sách giá</div>
+
+        <div class="row">
+          <div class="field">
+            <label class="f">Giá gốc / giá nhập (đ)</label>
+            <input id="cost" type="number" inputmode="numeric" value="65000" min="0">
+          </div>
+          <div class="field">
+            <label class="f">Làm tròn tới</label>
+            <select id="round">
+              <option value="1000" selected>1.000đ</option>
+              <option value="500">500đ</option>
+              <option value="100">100đ</option>
+              <option value="1">Không làm tròn</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="f">Cách tính lợi nhuận trên giá lẻ</label>
+          <div class="seg" id="modeSeg">
+            <button data-mode="pct" aria-pressed="true">Theo % markup</button>
+            <button data-mode="fixed" aria-pressed="false">Số tiền cố định/sp</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="f" id="profLbl">Lợi nhuận mong muốn (% markup)</label>
+          <input id="profit" type="number" inputmode="numeric" value="40" min="0">
+          <div class="help">Giá lẻ = giá gốc cộng phần lợi nhuận này. Giá gom là giá đã chiết khấu cho nhóm.</div>
+        </div>
+
+        <div class="field">
+          <label class="f">Giá lẻ cố định (đ) — tùy chọn</label>
+          <input id="retailFixed" type="number" inputmode="numeric" placeholder="Để trống = tool tự tính theo markup" min="0">
+          <div class="help">MKT chốt cứng giá lẻ thì điền vào đây; tool bỏ qua markup và lấy đúng số này làm giá lẻ.</div>
+        </div>
+
+        <div class="retailbox">
+          <span>Giá lẻ niêm yết<br><small id="retailMargin"></small></span>
+          <b id="retailOut">—</b>
+        </div>
+
+        <div class="subhead"><span class="tag">BẬC GOM</span> Chiết khấu theo số người (so với giá lẻ)</div>
+        <div class="row" style="margin-bottom:6px">
+          <div><label class="f">Gom 3 (%)</label><input id="d3" type="number" value="6" min="0"></div>
+          <div><label class="f">Gom 5 (%)</label><input id="d5" type="number" value="12" min="0"></div>
+          <div><label class="f">Gom 10 (%)</label><input id="d10" type="number" value="18" min="0"></div>
+        </div>
+
+        <div class="ladder" id="ladder"></div>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow">Bước 2 · Bài của đối thủ</div>
+        <div class="field">
+          <label class="f">Dán nguyên bài đối thủ vào đây</label>
+          <textarea id="rival" placeholder="VD: 🔥 GOM SỮA HẠT GIỌT LÀNH 🔥&#10;Giá lẻ 120k, gom 5 người chỉ 99k/người...&#10;Cmt GOM để chốt nhé cả nhà!"></textarea>
+          <div class="help">Tool chỉ lấy <b>tên sản phẩm</b> + giá để so sánh, rồi viết lại bằng giọng của bạn — không copy nguyên văn.</div>
+          <div class="detect" id="detect"></div>
+        </div>
+        <div class="field">
+          <label class="f">Tên sản phẩm (tự nhận, sửa được)</label>
+          <input id="product" placeholder="sữa hạt Giọt Lành">
+          <div id="policyMeta" style="display:none;gap:8px;flex-wrap:wrap;margin-top:9px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PHẢI: TEMPLATE + OUTPUT ============ -->
+    <div>
+      <div class="card">
+        <div class="eyebrow">Bước 3 · Chọn dạng bài &amp; thông tin chốt</div>
+
+        <div class="field">
+          <label class="f">Dạng bài (theo Template ID trong sheet)</label>
+          <div class="seg" id="tplSeg">
+            <button data-tpl="DEAL_GOM" aria-pressed="true">Mở kèo gom</button>
+            <button data-tpl="COMPARISON" aria-pressed="false">So sánh giá</button>
+            <button data-tpl="REMINDER" aria-pressed="false">Nhắc chốt</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="f">Bậc nhóm áp dụng cho bài này</label>
+          <div class="seg" id="nSeg">
+            <button data-n="3" aria-pressed="false">3 người</button>
+            <button data-n="5" aria-pressed="true">5 người</button>
+            <button data-n="10" aria-pressed="false">10 người</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field"><label class="f">Đã có (người)</label><input id="have" type="number" value="2" min="0"></div>
+          <div class="field"><label class="f">Mục tiêu (người)</label><input id="target" type="number" value="5" min="1"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label class="f">Giờ / hạn chốt</label><input id="deadline" value="20:00 hôm nay"></div>
+          <div class="field"><label class="f">Tệp khách (bài so sánh)</label><input id="segment" value="dân văn phòng"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow">Kết quả · Bài đăng của bạn</div>
+        <div class="out empty" id="postOut">Điền giá &amp; bấm “Tạo bài” để xem bài đăng.</div>
+        <div class="btnrow">
+          <button class="act primary" id="genBtn">Tạo bài</button>
+          <button class="act ai" id="aiBtn">✨ Viết lại tự nhiên (AI)</button>
+          <button class="act ghost" id="copyPost" disabled>Sao chép bài</button>
+        </div>
+
+        <div class="subhead" style="margin-top:20px"><span class="tag">POSTER</span> Prompt vẽ ảnh poster (dán vào AI tạo ảnh)</div>
+        <div class="out empty" id="posterOut" style="min-height:80px">Sẽ hiện sau khi tạo bài.</div>
+        <div class="btnrow">
+          <button class="act ghost" id="copyPoster" disabled>Sao chép prompt poster</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="foot">Giá tính tự động · luôn bấm “Tạo bài” lại sau khi đổi giá · bản AI giúp bài không trùng văn đối thủ.</p>
+</div>
+<div class="toast" id="toast">Đã sao chép</div>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(s){return document.querySelector(s)};
+  var state={mode:"pct", tpl:"DEAL_GOM", n:5};
+
+  var fmt=new Intl.NumberFormat("vi-VN");
+  function money(v){ if(v==null||isNaN(v)) return "—"; return fmt.format(Math.round(v))+"đ"; }
+  function num(id){ var v=parseFloat($(id).value); return isNaN(v)?0:v; }
+  function roundTo(v){ var r=num("#round")||1; return Math.round(v/r)*r; }
+
+  // ---------- PRICING ----------
+  function prices(){
+    var cost=num("#cost");
+    var fixed=num("#retailFixed");
+    var retail, isFixed=false;
+    if(fixed>0){ retail=fixed; isFixed=true; }
+    else { retail = state.mode==="pct" ? cost*(1+num("#profit")/100) : cost+num("#profit"); retail=roundTo(retail); }
+    var d={3:num("#d3"),5:num("#d5"),10:num("#d10")};
+    var tier={};
+    [3,5,10].forEach(function(k){ tier[k]=roundTo(retail*(1-d[k]/100)); });
+    return {cost:cost, retail:retail, tier:tier, isFixed:isFixed};
+  }
+
+  function renderLadder(){
+    var p=prices();
+    $("#retailOut").textContent=money(p.retail);
+    var rm=p.retail-p.cost, rmp=p.retail>0?Math.round(rm/p.retail*100):0;
+    $("#retailMargin").innerHTML = "lãi "+money(rm)+" · biên "+rmp+"%"+(p.isFixed?' · <b>giá cố định</b>':'');
+
+    var maxProfit=Math.max(1, p.retail-p.cost);
+    var html="";
+    [3,5,10].forEach(function(k){
+      var price=p.tier[k], profit=price-p.cost, mp=price>0?Math.round(profit/price*100):0;
+      var w=Math.max(3,Math.min(100,Math.round(profit/maxProfit*100)));
+      var loss=profit<0;
+      html+='<div class="tier" data-tier="'+k+'" data-active="'+(state.n==k)+'">'+
+        '<div class="who">Gom '+k+'<small>người</small></div>'+
+        '<div><div class="bar"><i style="width:'+(loss?0:w)+'%"></i></div>'+
+        '<div class="marginlbl '+(loss?'loss':'')+'">'+(loss?'⚠ dưới giá gốc — đang lỗ':'lãi '+money(profit)+' · biên '+mp+'%')+'</div></div>'+
+        '<div class="price">'+money(price)+'<small>/người</small></div>'+
+      '</div>';
+    });
+    $("#ladder").innerHTML=html;
+    document.querySelectorAll(".tier").forEach(function(t){
+      t.addEventListener("click",function(){ setN(parseInt(t.dataset.tier,10)); });
+    });
+    compareRival();
+  }
+
+  function setN(n){
+    state.n=n;
+    document.querySelectorAll('#nSeg button').forEach(function(b){b.setAttribute("aria-pressed", b.dataset.n==n);});
+    if(!$("#target").dataset.touched) $("#target").value=n;
+    renderLadder();
+  }
+
+  // ---------- RIVAL PARSING ----------
+  function parsePrices(txt){
+    var out=[], re=/(\d{1,3}(?:[.,]\d{3})+|\d{2,3})\s*(k|nghìn|ngàn|đ|vnđ|d)?/gi, m;
+    while((m=re.exec(txt))){
+      var raw=m[1].replace(/[.,]/g,""), val=parseInt(raw,10), unit=(m[2]||"").toLowerCase();
+      if(unit==="k"||unit==="nghìn"||unit==="ngàn"){ val=val*1000; }
+      else if(!unit && val<1000){ continue; } // bỏ số lẻ vô nghĩa
+      if(val>=1000 && val<=100000000) out.push(val);
+    }
+    return out;
+  }
+  function guessProduct(txt){
+    if(!txt.trim()) return "";
+    var line=txt.split(/\n/).map(function(s){return s.trim()}).filter(Boolean)[0]||"";
+    // bỏ emoji & ký tự trang trí
+    line=line.replace(/[\u{1F000}-\u{1FFFF}\u2600-\u27BF#*_~>•\-–—]/gu,"").trim();
+    var colon=line.split(/[:：]/);
+    if(colon.length>1 && colon[1].trim()) line=colon[1].trim();
+    line=line.replace(/^(gom|mở kèo|deal|hot|sale|combo|chốt)\b/i,"").trim();
+    return line.slice(0,60);
+  }
+  function compareRival(){
+    var box=$("#detect"), ps=parsePrices($("#rival").value);
+    if(!ps.length){ box.className="detect"; return; }
+    var lowest=Math.min.apply(null,ps), mine=prices().tier[state.n];
+    box.classList.add("show");
+    if(mine<=lowest){
+      box.className="detect show under";
+      box.innerHTML="✅ Giá gom "+state.n+" của bạn "+money(mine)+" — rẻ hơn/bằng giá thấp nhất đối thủ "+money(lowest)+".";
+    }else{
+      box.className="detect show over";
+      box.innerHTML="⚠ Giá gom "+state.n+" của bạn "+money(mine)+" đang cao hơn đối thủ "+money(lowest)+" ("+money(mine-lowest)+"). Cân nhắc tăng % chiết khấu.";
+    }
+  }
+
+  // ---------- TEMPLATE FILL ----------
+  function buildPost(){
+    var p=prices(), prod=$("#product").value.trim()||"sản phẩm", n=state.n;
+    var gom=p.tier[n], retail=p.retail;
+    var have=Math.round(num("#have")), target=Math.max(1,Math.round(num("#target")));
+    var deadline=$("#deadline").value.trim()||"cuối ngày";
+    var seg=$("#segment").value.trim()||"khách quen";
+    var save=retail-gom, savePct=retail>0?Math.round(save/retail*100):0;
+    var remaining=Math.max(0,target-have);
+
+    if(state.tpl==="DEAL_GOM"){
+      return "[GOM NHÓM GIÁ TỐT] Mở kèo gom nhóm "+n+" người: "+prod+"\n"+
+        "• Gom nhóm: "+n+" người\n"+
+        "• Giá lẻ: "+money(retail)+" → đủ nhóm còn: "+money(gom)+"/người\n"+
+        "• Hiện có: "+have+"/"+target+" người\n"+
+        "• Chốt gom lúc: "+deadline+"\n"+
+        'Comment "GOM + số lượng + tòa/khu" để giữ suất.';
+    }
+    if(state.tpl==="COMPARISON"){
+      return "[SO SÁNH TIẾT KIỆM] So sánh giá lẻ vs giá gom "+n+" người: "+prod+"\n"+
+        "• Mua lẻ: "+money(retail)+"\n"+
+        "• Mua gom "+n+" người: "+money(gom)+"\n"+
+        "• Tiết kiệm dự kiến: "+money(save)+" ("+savePct+"%)\n"+
+        'Kết luận: hợp với '+seg+'. Comment "TÍNH" để admin tính giúp.';
+    }
+    // REMINDER
+    return "[NHẮC CHỐT] Chốt gom cuối ngày: "+prod+"\n"+
+      "Còn "+remaining+" suất trước giờ chốt "+deadline+".\n"+
+      "Ai đã đặt kiểm tra lại giúp: tên / số lượng / khu.\n"+
+      'Ai muốn thêm comment "THÊM + số lượng" trước '+deadline+".";
+  }
+
+  function buildPoster(){
+    var p=prices(), prod=$("#product").value.trim()||"sản phẩm", n=state.n;
+    var gom=p.tier[n], deadline=$("#deadline").value.trim()||"cuối ngày";
+    var topicMap={DEAL_GOM:"Mở kèo gom nhóm "+n+" người: "+prod, COMPARISON:"So sánh giá lẻ vs giá gom "+n+" người: "+prod, REMINDER:"Chốt gom cuối ngày: "+prod};
+    return 'Tạo poster Zalo tỉ lệ 1:1 cho nhóm "Mua gom giá tốt", chủ đề "'+topicMap[state.tpl]+'". '+
+      'Phong cách healthy, sạch, tông màu xanh lá / be, có ảnh sản phẩm thật hoặc mockup đồ ăn-uống. '+
+      'Text lớn: "DEAL GOM '+n+' NGƯỜI". Text phụ: "'+money(gom)+'/người · chốt '+deadline+'". '+
+      'Thêm icon đồng hồ, giao hàng, ô QR placeholder. Bố cục rõ ràng, không quá 25 từ trên poster.';
+  }
+
+  function showOut(post,poster){
+    $("#postOut").textContent=post; $("#postOut").classList.remove("empty");
+    $("#posterOut").textContent=poster; $("#posterOut").classList.remove("empty");
+    $("#copyPost").disabled=false; $("#copyPoster").disabled=false;
+  }
+
+  function generate(){ showOut(buildPost(), buildPoster()); }
+
+  // ---------- AI REWRITE ----------
+  function aiRewrite(){
+    var btn=$("#aiBtn"), original=btn.innerHTML;
+    btn.disabled=true; btn.innerHTML='<span class="spin"></span>Đang viết…';
+    var base=buildPost(), poster=buildPoster(), rival=$("#rival").value.trim();
+    var prompt=
+"Bạn là người quản lý nhóm Zalo bán hàng gom nhóm (mua chung) ở Việt Nam, giọng thân thiện, ngắn gọn, có emoji vừa phải.\n\n"+
+"BÀI KHUNG (đã có sẵn số liệu giá CHÍNH XÁC, KHÔNG được đổi số):\n"+base+"\n\n"+
+(rival?("BÀI ĐỐI THỦ (chỉ dùng để tham khảo điểm bán & văn phong cần TRÁNH trùng — TUYỆT ĐỐI không copy nguyên văn):\n"+rival+"\n\n"):"")+
+"Yêu cầu: Viết lại bài khung trên thành một bài đăng tự nhiên, cuốn hút, KHÁC văn đối thủ, GIỮ NGUYÊN mọi con số giá/người/giờ và lời kêu gọi comment. Giữ đúng định dạng dòng. Chỉ trả về JSON thuần (không markdown, không ```): "+
+'{"post":"...","poster":"...(viết lại prompt poster cho đẹp hơn, vẫn 1:1, tông xanh-be, dưới 25 từ trên poster)..."}\n'+
+"poster gợi ý nền: "+poster;
+
+    fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1000,messages:[{role:"user",content:prompt}]})
+    }).then(function(r){return r.json()}).then(function(data){
+      var text=(data.content||[]).filter(function(i){return i.type==="text"}).map(function(i){return i.text}).join("\n");
+      var clean=text.replace(/```json/gi,"").replace(/```/g,"").trim();
+      var obj=null; try{ obj=JSON.parse(clean); }catch(e){
+        var s=clean.indexOf("{"), e2=clean.lastIndexOf("}");
+        if(s>-1&&e2>-1){ try{obj=JSON.parse(clean.slice(s,e2+1));}catch(_){} }
+      }
+      if(obj&&obj.post){ showOut(obj.post.trim(), (obj.poster||poster).trim()); toast("Đã viết lại bằng AI"); }
+      else { showOut(base,poster); toast("Không đọc được AI — đã dùng bản mẫu"); }
+    }).catch(function(){
+      showOut(base,poster); toast("Mất kết nối AI — đã dùng bản mẫu");
+    }).finally(function(){ btn.disabled=false; btn.innerHTML=original; });
+  }
+
+  // ---------- COPY / TOAST ----------
+  var toastT;
+  function toast(msg){ var t=$("#toast"); t.textContent=msg||"Đã sao chép"; t.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(function(){t.classList.remove("show")},1600); }
+  function copy(text){
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(function(){toast()}); }
+    else{ var ta=document.createElement("textarea"); ta.value=text; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy");toast()}catch(e){} document.body.removeChild(ta); }
+  }
+
+  // ---------- WIRING ----------
+  document.querySelectorAll('#modeSeg button').forEach(function(b){
+    b.addEventListener("click",function(){
+      state.mode=b.dataset.mode;
+      document.querySelectorAll('#modeSeg button').forEach(function(x){x.setAttribute("aria-pressed",x===b)});
+      $("#profLbl").textContent = state.mode==="pct" ? "Lợi nhuận mong muốn (% markup)" : "Lợi nhuận mong muốn (đ / sản phẩm)";
+      if(state.mode==="fixed" && num("#profit")>500) $("#profit").value=25000;
+      if(state.mode==="pct" && num("#profit")>200) $("#profit").value=40;
+      renderLadder();
+    });
+  });
+  document.querySelectorAll('#tplSeg button').forEach(function(b){
+    b.addEventListener("click",function(){
+      state.tpl=b.dataset.tpl;
+      document.querySelectorAll('#tplSeg button').forEach(function(x){x.setAttribute("aria-pressed",x===b)});
+    });
+  });
+  document.querySelectorAll('#nSeg button').forEach(function(b){
+    b.addEventListener("click",function(){ setN(parseInt(b.dataset.n,10)); });
+  });
+  ["#cost","#profit","#round","#d3","#d5","#d10","#retailFixed"].forEach(function(id){ $(id).addEventListener("input",renderLadder); });
+  $("#target").addEventListener("input",function(){ this.dataset.touched=1; });
+  $("#rival").addEventListener("input",function(){
+    var g=guessProduct(this.value); if(g && !$("#product").dataset.touched) $("#product").value=g;
+    compareRival();
+  });
+  $("#product").addEventListener("input",function(){ this.dataset.touched=1; });
+
+  $("#genBtn").addEventListener("click",generate);
+  $("#aiBtn").addEventListener("click",aiRewrite);
+  $("#copyPost").addEventListener("click",function(){ copy($("#postOut").textContent); });
+  $("#copyPoster").addEventListener("click",function(){ copy($("#posterOut").textContent); });
+
+  // ---------- GOOGLE SHEET SYNC (Phương án 3) ----------
+  var policyRows=[];
+  function norm(s){ return (s==null?"":s.toString()).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,""); }
+  function sheetId(u){ var m=(u||"").match(/\/d\/([a-zA-Z0-9-_]+)/); return m?m[1]:""; }
+  function escapeHtml(s){ return (s==null?"":s.toString()).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]}); }
+  function setStatus(msg,type){ var el=$("#sheetStatus"); el.innerHTML=msg; el.className="status "+(type||""); }
+  function numv(v){ if(v==null||v==="") return null; var n=parseFloat((""+v).replace(/[^0-9.,-]/g,"").replace(/\.(?=\d{3}(\D|$))/g,"").replace(",",".")); return isNaN(n)?null:n; }
+
+  function jsonp(url,cbName,timeout){
+    return new Promise(function(res,rej){
+      var s=document.createElement("script"),done=false;
+      window[cbName]=function(d){ done=true; cleanup(); res(d); };
+      function cleanup(){ try{delete window[cbName]}catch(e){window[cbName]=undefined} if(s.parentNode)s.parentNode.removeChild(s); }
+      s.onerror=function(){ if(!done){cleanup();rej(new Error("load"))} };
+      s.src=url; document.head.appendChild(s);
+      setTimeout(function(){ if(!done){cleanup();rej(new Error("timeout"))} }, timeout||9000);
+    });
+  }
+
+  function loadPolicy(){
+    var id=sheetId($("#sheetUrl").value.trim()), tab=$("#sheetTab").value.trim()||"Chính sách";
+    if(!id){ setStatus("Chưa nhận ra link Google Sheet — dán nguyên đường link trên thanh địa chỉ.","bad"); return; }
+    setStatus("Đang tải từ Google Sheet…","");
+    var cb="__gv"+Date.now();
+    var u="https://docs.google.com/spreadsheets/d/"+id+"/gviz/tq?tqx=responseHandler:"+cb+"&sheet="+encodeURIComponent(tab);
+    jsonp(u,cb,9000).then(function(d){
+      try{ parsePolicy(d); }
+      catch(e){ setStatus("Đọc được file nhưng cấu trúc cột chưa khớp. Kiểm tra tên cột ở tab “"+escapeHtml(tab)+"”.","bad"); }
+    }).catch(function(err){
+      if(err.message==="timeout") setStatus("Quá lâu không phản hồi — thường do sheet chưa mở quyền “Bất kỳ ai có link đều xem được”.","bad");
+      else setStatus("Không tải được trong khung này. Hãy <b>tải file về và mở bằng Chrome</b>, hoặc dùng “Dán dữ liệu thủ công” bên dưới.","bad");
+    });
+  }
+
+  function cellRaw(row,i){ if(i<0) return null; var c=row.c&&row.c[i]; return c?c:null; }
+  function cellVal(row,i){ var c=cellRaw(row,i); return c? (c.v!=null?c.v:(c.f!=null?c.f:"")) : ""; }
+  function pctVal(row,i){
+    var c=cellRaw(row,i); if(!c) return null;
+    if(c.f!=null && /%/.test(""+c.f)) return numv((""+c.f).replace("%",""));
+    var v=numv(c.v!=null?c.v:c.f); if(v!=null && v>0 && v<=1) v=v*100; return v;
+  }
+  function dateDisplay(row,i){ var c=cellRaw(row,i); if(!c) return ""; if(c.f!=null&&c.f!=="") return ""+c.f; return c.v!=null?(""+c.v):""; }
+  function parseDate(raw){
+    if(raw==null||raw==="") return null;
+    var s=""+raw, m;
+    if((m=s.match(/Date\((\d+),(\d+),(\d+)/))) return new Date(+m[1],+m[2],+m[3]);            // gviz
+    if((m=s.match(/(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{2,4})/))){ var y=+m[3]; if(y<100)y+=2000; return new Date(y,(+m[2])-1,+m[1]); } // dd/mm/yyyy
+    if((m=s.match(/(\d{4})[\/\-.](\d{1,2})[\/\-.](\d{1,2})/))) return new Date(+m[1],(+m[2])-1,+m[3]); // yyyy-mm-dd
+    return null;
+  }
+  function showPolicyMeta(p){
+    var el=$("#policyMeta"); if(!el) return;
+    var bits=[];
+    if(p.retailFixed!=null && p.retailFixed>0) bits.push('<span class="badge">Giá lẻ cố định: '+money(p.retailFixed)+'</span>');
+    if(p.validRaw){
+      var expired = p.validDate && (p.validDate.getTime() < Date.now()-86400000);
+      bits.push('<span class="badge'+(expired?' warn':'')+'">Áp dụng đến: '+escapeHtml(p.validRaw)+(expired?' · ĐÃ QUÁ HẠN':'')+'</span>');
+    }
+    el.innerHTML=bits.join(""); el.style.display=bits.length?"flex":"none";
+  }
+
+  function parsePolicy(data){
+    var t=data.table, cols=t.cols.map(function(c){return norm(c.label)});
+    if(cols.every(function(x){return !x}) && t.rows.length){ cols=t.rows[0].c.map(function(c){return norm(c&&c.v)}); t.rows=t.rows.slice(1); }
+    function find(test){ for(var i=0;i<cols.length;i++) if(cols[i]&&test(cols[i])) return i; return -1; }
+    var ck=function(h){return h.indexOf("chietkhau")>-1||h.indexOf("ck")>-1||h.indexOf("giam")>-1||h.indexOf("gom")>-1;};
+    var iProd=find(function(h){return h.indexOf("sanpham")>-1||h.indexOf("ten")>-1});
+    var iCost=find(function(h){return h.indexOf("giagoc")>-1||h.indexOf("gianhap")>-1||(h.indexOf("gia")>-1&&h.indexOf("goc")>-1)});
+    var iMk  =find(function(h){return h.indexOf("markup")>-1||h.indexOf("phantram")>-1||(h.indexOf("loinhuan")>-1&&h.indexOf("codinh")<0&&h.indexOf("dong")<0)});
+    var iFix =find(function(h){return h.indexOf("codinh")>-1&&h.indexOf("loinhuan")>-1});
+    var iRetail=find(function(h){return h.indexOf("giale")>-1});
+    var iValid=find(function(h){return h.indexOf("apdung")>-1||h.indexOf("hieuluc")>-1||h.indexOf("denngay")>-1||(h.indexOf("han")>-1&&h.indexOf("nhap")<0)});
+    var iD3  =find(function(h){return ck(h)&&h.indexOf("3")>-1&&h.indexOf("10")<0});
+    var iD5  =find(function(h){return ck(h)&&h.indexOf("5")>-1});
+    var iD10 =find(function(h){return ck(h)&&h.indexOf("10")>-1});
+
+    var byName={}, order=[];
+    t.rows.forEach(function(r){
+      var name=(cellVal(r,iProd)||"").toString().trim(); if(!name) return;
+      var key=norm(name);
+      if(!(key in byName)) order.push(key);
+      var vc=iValid>-1?cellRaw(r,iValid):null;
+      byName[key]={ name:name, cost:numv(cellVal(r,iCost)),
+        markup:pctVal(r,iMk), fixed:iFix>-1?numv(cellVal(r,iFix)):null,
+        retailFixed:iRetail>-1?numv(cellVal(r,iRetail)):null,
+        validRaw:iValid>-1?dateDisplay(r,iValid):"",
+        validDate:vc?(parseDate(vc.v)||parseDate(vc.f)):null,
+        d3:pctVal(r,iD3), d5:pctVal(r,iD5), d10:pctVal(r,iD10) }; // dòng sau ghi đè dòng trước → giữ bản mới nhất
+    });
+    policyRows=order.map(function(k){return byName[k];});
+    if(!policyRows.length){ setStatus("Không thấy dòng sản phẩm nào. Kiểm tra cột “Sản phẩm / Giá gốc”.","bad"); return; }
+    var sel=$("#prodSel");
+    sel.innerHTML='<option value="">— Chọn sản phẩm ('+policyRows.length+') —</option>'+
+      policyRows.map(function(p,i){return '<option value="'+i+'">'+escapeHtml(p.name)+'</option>'}).join("");
+    sel.style.display="block";
+    setStatus("Đã tải "+policyRows.length+" sản phẩm. Chọn một dòng để tự điền giá.","good");
+  }
+
+  function setMode(m){
+    state.mode=m;
+    document.querySelectorAll('#modeSeg button').forEach(function(x){x.setAttribute("aria-pressed",x.dataset.mode===m)});
+    $("#profLbl").textContent = m==="pct" ? "Lợi nhuận mong muốn (% markup)" : "Lợi nhuận mong muốn (đ / sản phẩm)";
+  }
+  function applyPolicy(i){
+    var p=policyRows[i]; if(!p) return;
+    if(p.cost!=null) $("#cost").value=Math.round(p.cost);
+    if(p.markup!=null && p.markup>0){ setMode("pct"); $("#profit").value=p.markup; }
+    else if(p.fixed!=null){ setMode("fixed"); $("#profit").value=Math.round(p.fixed); }
+    $("#retailFixed").value=(p.retailFixed!=null && p.retailFixed>0)?Math.round(p.retailFixed):"";
+    if(p.d3!=null) $("#d3").value=p.d3;
+    if(p.d5!=null) $("#d5").value=p.d5;
+    if(p.d10!=null) $("#d10").value=p.d10;
+    $("#product").value=p.name; $("#product").dataset.touched=1;
+    showPolicyMeta(p);
+    renderLadder(); generate();
+    toast("Đã nạp giá: "+p.name);
+  }
+
+  function loadPasted(){
+    var raw=$("#pasteData").value.trim(); if(!raw){ setStatus("Chưa có dữ liệu dán.","bad"); return; }
+    var lines=raw.split(/\r?\n/).filter(function(l){return l.trim()});
+    if(lines.length<2){ setStatus("Cần ít nhất dòng tiêu đề + 1 dòng sản phẩm.","bad"); return; }
+    var delim=lines[0].indexOf("\t")>-1?"\t":(lines[0].indexOf(";")>-1?";":",");
+    var header=lines[0].split(delim).map(norm);
+    var rows=lines.slice(1).map(function(l){ return {c:l.split(delim).map(function(v){return {v:v}})}; });
+    try{ parsePolicy({table:{cols:header.map(function(h){return {label:h}}),rows:rows}}); }
+    catch(e){ setStatus("Dữ liệu dán chưa đúng cột.","bad"); }
+  }
+
+  // ---------- WIRING (sheet) ----------
+  $("#loadBtn").addEventListener("click",loadPolicy);
+  $("#prodSel").addEventListener("change",function(){ if(this.value!=="") applyPolicy(parseInt(this.value,10)); });
+  $("#pasteBtn").addEventListener("click",loadPasted);
+  $("#togglePaste").addEventListener("click",function(){ var w=$("#pasteWrap"); w.style.display=(w.style.display==="none"||!w.style.display)?"block":"none"; });
+
+  // init
+  setN(5); renderLadder(); generate();
+})();
+</script>
+</body>
+</html>
